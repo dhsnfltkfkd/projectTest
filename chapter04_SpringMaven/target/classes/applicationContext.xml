@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<context:component-scan base-package="user.dto"></context:component-scan>
+	<context:annotation-config/>
+
+	
+	<!-- main -->
+	<bean id="helloSpring" class="user.main.HelloSpring"></bean>
+	
+	<!-- action -->
+	<bean id="userInsertAction" class="user.action.UserInsertAction">
+		<property name="userDTO" ref="userDTO"/>
+		<property name="userDAO" ref="userDAOImpl"/>
+	</bean>
+	<bean id="userSelectAction" class="user.action.UserSelectAction">
+		<property name="userDAO" ref="userDAOImpl"/>
+	</bean>
+	<bean id="userUpdateAction" class="user.action.UserUpdateAction">
+		<property name="userDTO" ref="userDTO"/>
+		<property name="userDAO" ref="userDAOImpl"/>
+	</bean>
+	<bean id="userDeleteAction" class="user.action.UserDeleteAction">
+		<property name="userDAO" ref="userDAOImpl"/>
+	</bean>
+	
+	
+	<!-- DTO -->
+	
+	<!-- DAO -->
+	<bean id="userDAOImpl" class="user.dao.UserDAOImpl">
+		<!-- <property name="jdbcTemplate" ref="jdbcTemplate"/> -->
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- JdbcTemplate -->
+	<!--<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="dataSource"/>
+	</bean> -->
+	<!-- Connection Pool & DataSource -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="java"/>
+		<property name="password" value="itbank"/>
+		<property name="maxTotal" value="20"/>
+		<property name="maxIdle" value="3"/>
+	</bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

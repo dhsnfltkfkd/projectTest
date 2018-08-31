@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+td {font-size: 10px;}
+
+#adressA:link {color:black; text-decoration: none;}
+#adressA:visited {color:black; text-decoration: none;}
+#adressA:hover {color:green; text-decoration: underline;}
+#adressA:active {color:black; text-decoration: none;}

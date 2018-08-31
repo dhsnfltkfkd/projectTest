@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+header, section, nav, article, aside, footer
+ { padding:10px; solid black; }
+header {top:0%; width:100%; height:10%; background-color:yellow;}
+article { width:90%; height:53%; }
+section {width:93%; height:50%;background-color:orange;}
+footer {top:100%; left:40%;}
